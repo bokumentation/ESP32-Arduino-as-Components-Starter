@@ -2,6 +2,7 @@
 
 >[!IMPORTANT]
 > This is for **Standard ESP32 Chip**. But you can set-target to another. Read below.
+> 
 > We need an **Internet Connection** to automatically download the managed_components.
 
 Clone this repo then just run:
