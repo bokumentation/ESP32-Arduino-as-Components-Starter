@@ -1,15 +1,21 @@
-# Setup arduino-esp32 as ESP-IDF Components
+# Simple Setup for `arduino-esp32` as ESP-IDF Components
 
-Note: This is for standard ESP32 chip. But you can set-target to another. Read below.
-Important:  We need internet connection to automatically download the managed_components.
+>[!NOTE]
+> This is for standard ESP32 chip. But you can set-target to another. Read below.
+
+>[!IMPORTANT]
+> We need an *internet connection** to automatically download the managed_components.
 
 Clone this repo then just run:
 ```bash
+git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
+cd ESP32-Arduino-as-Components-Starter
+
 idf.py build
 idf.py -p COMx flash monitor
 ```
-Note:
-- change the `x` to your actual port. By default are COM3.
+>[!NOTE]
+> Change the `x` to your actual port. By default are COM3 (In case my projects. Check int the device manager).
 
 ---
 ### If you're using another esp32 chip
@@ -17,14 +23,14 @@ Note:
 - Delete the line of `espressif/arduino-esp32: ^3.3.0`. This is prevent the `idf.py` to include it.
 - Then we can run these below.
     ```bash
-    idf.py set-target esp32c3
+    idf.py set-target <your_esp_type>
     idf.py menuconfig
     ```
 - Navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. Then press `enter` and save.
 - Then we can add arduino as components.
-    ```
+    ```bash
     idf.py add-dependency "espressif/arduino-esp32^3.3.0"
-
+    ```
 - Now we can build and flash it.    
     ```bash
     idf.py build
