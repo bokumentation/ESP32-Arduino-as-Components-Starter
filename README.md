@@ -63,6 +63,7 @@ void loop(){
 ```
 
 #### ESP-IDF Style
+If you wanna use this, just turn off the `Autostart Arduino setup and loop boot` on the `idf.py menuconfig`.
 ```cpp
 //file: main.cpp
 #include "Arduino.h"
