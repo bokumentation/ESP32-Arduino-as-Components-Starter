@@ -1,10 +1,10 @@
 # Simple Setup for `arduino-esp32` as ESP-IDF Components
 
 >[!NOTE]
-> This is for standard ESP32 chip. But you can set-target to another. Read below.
+> This is for **Standard ESP32 Chip**. But you can set-target to another. Read below.
 
 >[!IMPORTANT]
-> We need an *internet connection** to automatically download the managed_components.
+> We need an **internet connection** to automatically download the managed_components.
 
 Clone this repo then just run:
 ```bash
