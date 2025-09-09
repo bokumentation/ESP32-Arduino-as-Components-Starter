@@ -1,15 +1,13 @@
-# Simple Setup for `arduino-esp32` as ESP-IDF Components
-
->[!NOTE]
-> This is for **Standard ESP32 Chip**. But you can set-target to another. Read below.
+# Simple Setup for arduino-esp32 as ESP-IDF Components
 
 >[!IMPORTANT]
-> We need an **internet connection** to automatically download the managed_components.
+> This is for **Standard ESP32 Chip**. But you can set-target to another. Read below.
+> We need an **Internet Connection** to automatically download the managed_components.
 
 Clone this repo then just run:
 ```bash
 git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
-cd ESP32-Arduino-as-Components-Starter
+cd ESP32-Arduino-as-Components-Starter/examples/arduino_style
 
 idf.py build
 idf.py -p COMx flash monitor
