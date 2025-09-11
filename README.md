@@ -18,7 +18,7 @@ Follow the intructions command below.
   idf.py build
   idf.py -p COMx flash monitor
   ```
-  >[!NOTE]
+  > [!NOTE]
   > Change the `x` to your actual port. By default are COM3 (In case my projects. Check int the device manager).
 - Now you LED should blinking.
 
