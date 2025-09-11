@@ -5,16 +5,22 @@
 > 
 > We need an **Internet Connection** to automatically download the managed_components.
 
-Clone this repo then just run:
-```bash
-git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
-cd ESP32-Arduino-as-Components-Starter/examples/arduino_style
-
-idf.py build
-idf.py -p COMx flash monitor
-```
->[!NOTE]
-> Change the `x` to your actual port. By default are COM3 (In case my projects. Check int the device manager).
+## Get Started
+Follow the intructions command below.
+- Run ESP-IDF 
+- Clone and navigate the project folder.
+  ```bash
+  git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
+  cd ESP32-Arduino-as-Components-Starter/examples/arduino_style
+  ```
+- Build then flash to the esp32.
+  ```bash
+  idf.py build
+  idf.py -p COMx flash monitor
+  ```
+  >[!NOTE]
+  > Change the `x` to your actual port. By default are COM3 (In case my projects. Check int the device manager).
+- Now you LED should blinking.
 
 ---
 ### If you're using another esp32 chip
