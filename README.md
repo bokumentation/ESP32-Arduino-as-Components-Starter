@@ -18,15 +18,15 @@ idf.py -p COMx flash monitor
 
 ---
 ### If you're using another esp32 chip
-- Open idf_component.yml on the `main` folder.
-- Delete the line of `espressif/arduino-esp32: ^3.3.0`. This is prevent the `idf.py` to include it.
-- Then we can run these below.
+- Delete the `idf_component.yml` in the `main` folder.
+- Then run these esp-idf command below.
     ```bash
     idf.py set-target <your_esp_type>
     idf.py menuconfig
     ```
 - Navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. Then press `enter` and save.
-- Then we can add arduino as components.
+- Then back to the top menu again, navigate to `Component config -> Diagnostics -> Use external log wrapper`. Enter (it will `[*]`) then save. Exit the menuconfig.
+- Then, add arduino as components.
     ```bash
     idf.py add-dependency "espressif/arduino-esp32^3.3.0"
     ```
@@ -36,11 +36,15 @@ idf.py -p COMx flash monitor
     idf.py -p COMx flash monitor
     ```
 
+>[!NOTE]
+> Change the `x` to your actual port. By default are COM3 (In case my projects. Check int the device manager).
+
 --- 
 ### Some note if you're planning to use Arduino as Components: 
-Before you run `idf.py add-dependency "espressif/arduino-esp32^3.3.0"`, You need to set `CONFIG_FREERTOS_HZ=1000` (currently 100 by default) by using `idf.py menuconfig` then navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. The tickHZ problem now gone.
+Before you run `idf.py add-dependency "espressif/arduino-esp32^3.3.0"`, You need to set `CONFIG_FREERTOS_HZ=1000` (currently 100 by default) by using `idf.py menuconfig` then navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. The tickHZ problem now is gone.
 
-After i compiled some `Wifi.h` code, the compiler toldme about  undefined reference to `__wrap_esp_log_write` and `__wrap_esp_log_write`. Turn out, we need to enable `Component config -> Diagnostics -> Use external log wrapper`. 
+After i compiled some `Wifi.h` code, the compiler told me about undefined reference to `__wrap_esp_log_write` and `__wrap_esp_log_writev`. Turn out, we need to enable external log wrapper at menunconfig `Component config -> Diagnostics -> Use external log wrapper`. 
+
 ---
 ### The Style
 There is two option, by using `void setup()` and `loop()` like Arduino's does, or by using `extern "C" void app_main()` like the esp-idf. Here the example from their documentation.
