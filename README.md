@@ -38,8 +38,11 @@ idf.py -p COMx flash monitor
 
 --- 
 ### Some note if you're planning to use Arduino as Components: 
-Before you run `idf.py add-dependency "espressif/arduino-esp32^3.3.0"`, You need to set `CONFIG_FREERTOS_HZ=1000` (currently 100 by default) by using `idf.py menuconfig` then navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Save it then enjoy.
+Before you run `idf.py add-dependency "espressif/arduino-esp32^3.3.0"`, You need to set `CONFIG_FREERTOS_HZ=1000` (currently 100 by default) by using `idf.py menuconfig` then navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. The tickHZ problem now gone.
 
+After i compiled some `Wifi.h` code, the compiler toldme about  undefined reference to `__wrap_esp_log_write` and `__wrap_esp_log_write`. Turn out, we need to enable `Component config -> Diagnostics -> Use external log wrapper`. 
+---
+### The Style
 There is two option, by using `void setup()` and `loop()` like Arduino's does, or by using `extern "C" void app_main()` like the esp-idf. Here the example from their documentation.
 
 #### Arduino IDE Style
@@ -88,5 +91,3 @@ extern "C" void app_main()
 ```
 
 ---
-### My to do: 
-try `esp32-hal-log.h`
