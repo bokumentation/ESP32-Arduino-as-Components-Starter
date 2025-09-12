@@ -29,26 +29,29 @@ Make sure you have to run ESP-IDF on your terminal. Then follow these steps.
 ---
 ## Setting Up for Different ESP32 Chips
 If you are using a chip other than the standard ESP32, you will need to perform some additional configuration before building.
-1. Delete the `idf_component.yml` in the `main` folder.
-2. Set the target chip by use `idf.py set-target` to specify your chip type (e.g., `esp32c3`, `esp32s3`).
+1. **Delete** the `idf_component.yml` in the `main` folder.
+2. **Set the target chip** by use `idf.py set-target` to specify your chip type (e.g., `esp32c3`, `esp32s3`).
     ```bash
     idf.py set-target <your_esp_type>
     ```
-3. Adjust menuconfig setting by running `idf.py menuconfig` and navigate to the following options:
-    - `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. This resolves potential FreeRTOS tick rate conflicts.
-    - `Component config` -> `Diagnostics`-> `Use external log wrapper` and enable it. This fixes undefined reference errors related to logging functions.
-
-    After making these changes, save and exit `menuconfig`.
-
-4. **Add Arduino as a component:** Add the arduino-esp32 component as a dependency.
-    ```bash
-    idf.py add-dependency "espressif/arduino-esp32^3.3.0"
-    ```
-5. **Build and Flash:** We can now build and flash the project to your new target chip.
+3. **Adjust menuconfig** setting by running `idf.py menuconfig` and navigate to the following options **step by step**:
+    - `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. This resolves potential FreeRTOS tick rate conflicts. Save then exit.
+        > Note: Configure this first before add dependency.
+    - Then we can add Arduino as a components:
+        ```bash
+        idf.py add-dependency "espressif/arduino-esp32^3.3.0"
+        ```
+    - Open `idf.py menuconfig` again. Navigate to `Component config` -> `Diagnostics`-> `Use external log wrapper` and enable it. This fixes undefined reference errors related to logging functions. Save then exit.
+    - (Optional) Go to `Component config` -> `mbedTLS` -> `TLS Key Exchange Methods` -> `Enable pre-shared-key ciphersuites` and then check `Enable PSK based ciphersuite modes`. Save and Quit.  This is optional step. 
+        > Note: Actually you can skip this step. It just remove some compiler warning.
+    - After making these changes, save and exit `menuconfig`.
+    
+4. **Build and Flash:** Now we can build and flash the project to your new target chip.
     ```bash
     idf.py build
     idf.py -p <PORT> flash monitor
     ```
+    > Replace <PORT> with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
 
 ---
 ## Choosing Programming Style
