@@ -1,4 +1,4 @@
-# Simple Setup for arduino-esp32 as ESP-IDF Components
+# Simple Setup for Arduino-esp32 as ESP-IDF Components
 
 This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF components. An **internet connection** is required for automatic download of managed components. For other ESP32 chip types, refer to the **"Setting Up for Different ESP32 Chips"** section below.
 
@@ -41,9 +41,11 @@ If you are using a chip other than the standard ESP32, you will need to perform 
         ```bash
         idf.py add-dependency "espressif/arduino-esp32^3.3.0"
         ```
-    - Open `idf.py menuconfig` again. Navigate to `Component config` -> `Diagnostics`-> `Use external log wrapper` and enable it. This fixes undefined reference errors related to logging functions. Save then exit.
-    - (Optional) Go to `Component config` -> `mbedTLS` -> `TLS Key Exchange Methods` -> `Enable pre-shared-key ciphersuites` and then check `Enable PSK based ciphersuite modes`. Save and Quit.  This is optional step. 
-        > Note: Actually you can skip this step. It just remove some compiler warning.
+    - Open `idf.py menuconfig` again.
+        - Navigate to `Arduino options` -> `Autostart Arduino setup and loop boot`. Enable this to use `void setup()` and `loop()` like in Arduino IDE. For more information, see the _Choosing Programming Style_ section below.
+        - Navigate to `Component config` -> `Diagnostics`-> `Use external log wrapper` and enable it. This fixes undefined reference errors related to logging functions. Save then exit.
+        - (Optional) Go to `Component config` -> `mbedTLS` -> `TLS Key Exchange Methods` -> `Enable pre-shared-key ciphersuites` and then check `Enable PSK based ciphersuite modes`. Save and Quit.  
+            > Note: Actually you can skip this step. It just remove some compiler warning.
     - After making these changes, save and exit `menuconfig`.
     
 4. **Build and Flash:** Now we can build and flash the project to your new target chip.
