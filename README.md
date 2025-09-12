@@ -11,7 +11,7 @@ This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF c
 
 ---
 ## Get Started
-Make sure you have ESP-IDF intalled on your computer. Then follow these steps.
+Make sure you have to run ESP-IDF on your terminal. Then follow these steps.
 1. **Clone and navigate** to the example folder.
     ```bash
     git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
