@@ -22,15 +22,15 @@ Make sure you have ESP-IDF intalled on your computer. Then follow these steps.
     idf.py build
     idf.py -p <PORT> flash monitor
     ```
-    >[!NOTE]
-    > Replace <PORT> with your ESP32's actual serial port (e.g., COM3 on Windows or /dev/ttyUSB0 on Linux). We can find this in device manager.
+    >
+    > Replace <PORT> with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
 3. Now your LED should blinking.
 
 ---
 ## Setting Up for Different ESP32 Chips
 If you are using a chip other than the standard ESP32, you will need to perform some additional configuration before building.
 1. Delete the `idf_component.yml` in the `main` folder.
-2. Set the target chip by use idf.py set-target to specify your chip type (e.g., `esp32c3`, `esp32s3`).
+2. Set the target chip by use `idf.py set-target` to specify your chip type (e.g., `esp32c3`, `esp32s3`).
     ```bash
     idf.py set-target <your_esp_type>
     ```
