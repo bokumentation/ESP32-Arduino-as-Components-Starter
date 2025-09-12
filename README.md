@@ -3,7 +3,7 @@
 This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF components. An **internet connection** is required for automatic download of managed components. For other ESP32 chip types, refer to the **"Setting Up for Different ESP32 Chips"** section below.
 
 **Features:**
-- Straighforward setup for ESP32 (just clone then build and flash)
+- Straightforward setup for ESP32 (just clone then build and flash)
 - Support VS Code IntelliSense or Clangd extension.
 
 **You need:**
