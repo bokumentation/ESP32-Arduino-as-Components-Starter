@@ -34,7 +34,7 @@ If you are using a chip other than the standard ESP32, you will need to perform 
     ```bash
     idf.py set-target <your_esp_type>
     ```
-3. Adjust menuconfig setting by running idf.py menuconfig and navigate to the following options:
+3. Adjust menuconfig setting by running `idf.py menuconfig` and navigate to the following options:
     - `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. This resolves potential FreeRTOS tick rate conflicts.
     - `Component config` -> `Diagnostics`-> `Use external log wrapper` and enable it. This fixes undefined reference errors related to logging functions.
 
