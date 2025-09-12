@@ -1,104 +1,104 @@
 # Simple Setup for arduino-esp32 as ESP-IDF Components
 
->[!IMPORTANT]
-> This is for **Standard ESP32 Chip**. But you can set-target to another (Read below).
-> 
-> We need an **Internet Connection** to automatically download the managed_components.
+This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF components. An **internet connection** is required for automatic download of managed components. For other ESP32 chip types, refer to the **"Setting Up for Different ESP32 Chips"** section below.
 
-## Get Started
-Follow the intructions command below.
-- Run ESP-IDF 
-- Clone and navigate the project folder.
-  ```bash
-  git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
-  cd ESP32-Arduino-as-Components-Starter/examples/arduino_style
-  ```
-- Build then flash to the esp32.
-  ```bash
-  idf.py build
-  idf.py -p COMx flash monitor
-  ```
->[!NOTE]
-> Change the `x` to your actual port. By default are COM3 (In case my projects. Check in the device manager).
+**Features:**
+- Straighforward setup for ESP32 (just clone then build and flash)
+- Support VS Code IntelliSense or Clangd extension.
 
-Now you LED should blinking.
+**You need:**
+- Installed ESP-IDF on your computer
 
 ---
-### If you're using another esp32 chip
-- Delete the `idf_component.yml` in the `main` folder.
-- Then run these esp-idf command below.
+## Get Started
+Make sure you have ESP-IDF intalled on your computer. Then follow these steps.
+1. **Clone and navigate** to the example folder.
+    ```bash
+    git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
+    cd ESP32-Arduino-as-Components-Starter/examples/arduino_style
+    ```
+2. **Build, flash, then monitor.**
+    ```bash
+    idf.py build
+    idf.py -p <PORT> flash monitor
+    ```
+    >[!NOTE]
+    > Replace <PORT> with your ESP32's actual serial port (e.g., COM3 on Windows or /dev/ttyUSB0 on Linux). We can find this in device manager.
+3. Now your LED should blinking.
+
+---
+## Setting Up for Different ESP32 Chips
+If you are using a chip other than the standard ESP32, you will need to perform some additional configuration before building.
+1. Delete the `idf_component.yml` in the `main` folder.
+2. Set the target chip by use idf.py set-target to specify your chip type (e.g., `esp32c3`, `esp32s3`).
     ```bash
     idf.py set-target <your_esp_type>
-    idf.py menuconfig
     ```
-- Navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. Then press `enter` and save.
-- Then back to the top menu again, navigate to `Component config -> Diagnostics -> Use external log wrapper`. Enter (it will `[*]`) then save. Exit the menuconfig.
-- Then, add arduino as components.
+3. Adjust menuconfig setting by running idf.py menuconfig and navigate to the following options:
+    - `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. Set it to 1000. This resolves potential FreeRTOS tick rate conflicts.
+    - `Component config` -> `Diagnostics`-> `Use external log wrapper` and enable it. This fixes undefined reference errors related to logging functions.
+
+    After making these changes, save and exit `menuconfig`.
+
+4. **Add Arduino as a component:** Add the arduino-esp32 component as a dependency.
     ```bash
     idf.py add-dependency "espressif/arduino-esp32^3.3.0"
     ```
-- Now we can build and flash it.    
+5. **Build and Flash:** We can now build and flash the project to your new target chip.
     ```bash
     idf.py build
-    idf.py -p COMx flash monitor
+    idf.py -p <PORT> flash monitor
     ```
 
->[!NOTE]
-> Change the `x` to your actual port. By default are COM3 (In case my projects. Check int the device manager).
-
---- 
-### Some note if you're planning to use Arduino as Components: 
-Before you run `idf.py add-dependency "espressif/arduino-esp32^3.3.0"`, You need to set `CONFIG_FREERTOS_HZ=1000` (currently 100 by default) by using `idf.py menuconfig` then navigate to `Component config` -> `FreeRTOS` -> `Kernel` -> `configTICK_RATE_HZ`. The tickHZ problem now is gone.
-
-After i compiled some `Wifi.h` code, the compiler told me about undefined reference to `__wrap_esp_log_write` and `__wrap_esp_log_writev`. Turn out, we need to enable external log wrapper at menunconfig `Component config -> Diagnostics -> Use external log wrapper`. 
-
 ---
-### The Style
-There is two option, by using `void setup()` and `loop()` like Arduino's does, or by using `extern "C" void app_main()` like the esp-idf. Here the example from their documentation.
+## Choosing Programming Style
 
-#### Arduino IDE Style
-We need to turn on the `Autostart Arduino setup and loop boot` on the `idf.py menuconfig`. We can see the `Arduino option` in menuconfig after added the `arduino-esp` as components.
+We can write your code in either the familiar Arduino style or the native ESP-IDF style.
+
+### Arduino IDE Style
+This style uses the standard `setup()` and `loop()` functions. To enable this, we must enable `Autostart Arduino setup and loop boot` in `idf.py menuconfig` under the `Arduino options` section.
 
 ```cpp
-//file: main.cpp
+// file: main.cpp
 #include "Arduino.h"
 
 void setup(){
-  Serial.begin(115200);
-  while(!Serial){
-    ; // wait for serial port to connect
-  }
+    Serial.begin(115200);
+    while(!Serial){
+        ; // Wait for serial port to connect
+    }
+    Serial.println("Starting up...");
 }
 
 void loop(){
-    Serial.println("loop");
+    Serial.println("Looping...");
     delay(1000);
 }
 ```
 
-#### ESP-IDF Style
-If you wanna use this, just turn off the `Autostart Arduino setup and loop boot` on the `idf.py menuconfig`.
+
+### ESP-IDF Style
+This style uses the `app_main()` function as the entry point. To use this, simply disable `Autostart Arduino setup and loop boot` in `idf.py menuconfig`.
 ```cpp
-//file: main.cpp
+// file: main.cpp
 #include "Arduino.h"
 
 extern "C" void app_main()
 {
-  initArduino();
+    initArduino(); // Initialize the Arduino core
 
-  // Arduino-like setup()
-  Serial.begin(115200);
-  while(!Serial){
-    ; // wait for serial port to connect
-  }
+    // Arduino-like setup()
+    Serial.begin(115200);
+    while(!Serial){
+        ; // Wait for serial port to connect
+    }
 
-  // Arduino-like loop()
-  while(true){
-    Serial.println("loop");
-  }
+    // Arduino-like loop()
+    while(true){
+        Serial.println("Looping...");
+        delay(1000); // Wait for 1 second
+    }
 
-  // WARNING: if program reaches end of function app_main() the MCU will restart.
+    // WARNING: If the program reaches the end of app_main(), the MCU will restart.
 }
 ```
-
----
