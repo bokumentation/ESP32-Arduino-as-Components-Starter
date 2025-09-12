@@ -53,7 +53,7 @@ If you are using a chip other than the standard ESP32, you will need to perform 
 ---
 ## Choosing Programming Style
 
-We can write your code in either the familiar Arduino style or the native ESP-IDF style.
+We can write our code in either the familiar Arduino style or the native ESP-IDF style.
 
 ### Arduino IDE Style
 This style uses the standard `setup()` and `loop()` functions. To enable this, we must enable `Autostart Arduino setup and loop boot` in `idf.py menuconfig` under the `Arduino options` section.
