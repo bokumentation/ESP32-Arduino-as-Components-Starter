@@ -14,6 +14,8 @@ void setup() {
 
   ESP_LOGI("TAG", "HELLO from ESP_LOG Info!");        // ESP-IDF Log Info
   Serial.println("HELLO from ARDUINO Serial Print!"); // Arduino Serial Print
+
+  delay(3000);
 }
 
 void loop() {
