@@ -1,34 +1,29 @@
-//file: main.cpp
+// file: main.cpp
 #include "Arduino.h"
-#include "esp_log.h"
 
 const int ledPin = 2;
-static const char* pMY_TAG = "LED";
+static const char *pMY_TAG = "LED";
 
-void setup(){
+void setup() {
   Serial.begin(115200);
-  while(!Serial){
+  while (!Serial) {
     ; // wait for serial port to connect
   }
-  pinMode(ledPin, OUTPUT);  // Initialize Pin as Output
+
+  pinMode(ledPin, OUTPUT); // Initialize Pin as Output
+
+  ESP_LOGI("TAG", "HELLO from ESP_LOG Info!");        // ESP-IDF Log Info
+  Serial.println("HELLO from ARDUINO Serial Print!"); // Arduino Serial Print
 }
 
-void loop(){
-  // Turn on LED
-  digitalWrite(ledPin, HIGH);
-  
-  // Added LOG INFO
-  ESP_LOGI(pMY_TAG, "ON");    // ESP-IDF LOG
-  Serial.println("LED HIGH"); // Arduino Style
-  
+void loop() {
+  digitalWrite(ledPin, HIGH); // Turn on LED
+  ESP_LOGI(pMY_TAG, "ON");
+  Serial.println("LED HIGH");
   delay(1000);
-  
-  // Turn off LED
-  digitalWrite(ledPin, LOW);
-  
-  // Added LOG INFO
-  ESP_LOGI(pMY_TAG, "OFF");   // ESP-IDF LOG
-  Serial.println("LED LOW");  // Arduino Style
-    
+
+  digitalWrite(ledPin, LOW); // Turn off LED
+  ESP_LOGI(pMY_TAG, "OFF");
+  Serial.println("LED LOW");
   delay(1000);
 }

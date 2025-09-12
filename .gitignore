@@ -1,0 +1,9 @@
+# Folder arduino_style
+examples/arduino_style/build/
+examples/arduino_style/managed_components/
+examples/arduino_style/components/
+
+# Folder extern_c_style
+examples/extern_c_style/build/
+examples/extern_c_style/managed_components/
+examples/extern_c_style/components/
