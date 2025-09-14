@@ -1,6 +1,6 @@
 # Simple Setup for Arduino-esp32 as ESP-IDF Components
 
-This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF components. An **internet connection** is required for automatic download of managed components. For other ESP32 chip types, refer to the **"Setting Up for Different ESP32 Chips"** section below.
+This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF components. For other ESP32 chip types, refer to the **"Setting Up for Different ESP32 Chips"** section below.
 
 **Features:**
 - Straightforward setup for ESP32 (just clone then build and flash)
@@ -8,6 +8,7 @@ This is a straighforward setup for integrating **Arduino-esp32** as an ESP-IDF c
 
 **You need:**
 - Installed ESP-IDF on your computer
+- An internet connection
 
 ---
 ## Get Started
