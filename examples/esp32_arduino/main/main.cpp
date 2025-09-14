@@ -4,9 +4,11 @@
 const int ledPin = 2;
 static const char *pMY_TAG = "LED";
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
-  while (!Serial) {
+  while (!Serial)
+  {
     ; // wait for serial port to connect
   }
 
@@ -18,7 +20,8 @@ void setup() {
   delay(3000);
 }
 
-void loop() {
+void loop()
+{
   digitalWrite(ledPin, HIGH); // Turn on LED
   ESP_LOGI(pMY_TAG, "ON");
   Serial.println("LED HIGH");
