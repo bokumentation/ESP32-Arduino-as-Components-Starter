@@ -4,3 +4,6 @@ build/
 managed_components/
 components/
 dependencies.lock
+
+# MacOS Related
+.DS_Store
