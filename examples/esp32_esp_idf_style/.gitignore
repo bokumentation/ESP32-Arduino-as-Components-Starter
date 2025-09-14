@@ -1,4 +1,5 @@
 .cache/
+.vscode/settings.json
 build/
 managed_components/
 components/
