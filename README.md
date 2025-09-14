@@ -15,15 +15,19 @@ Make sure you have to run ESP-IDF on your terminal. Then follow these steps.
 1. **Clone and navigate** to the example folder.
     ```bash
     git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
+    ```
+    ```bash
     cd ESP32-Arduino-as-Components-Starter/examples/esp32_arduino
     ```
 2. **Build, flash, then monitor.**
     ```bash
     idf.py build
+    ```
+    ```bash
     idf.py -p <PORT> flash monitor
     ```
     >
-    > Replace <PORT> with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
+    > Replace `<PORT>` with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
 3. Now your LED should blinking.
 
 ---
@@ -51,9 +55,11 @@ If you are using a chip other than the standard ESP32, you will need to perform 
 4. **Build and Flash:** Now we can build and flash the project to your new target chip.
     ```bash
     idf.py build
+    ```
+    ```bash
     idf.py -p <PORT> flash monitor
     ```
-    > Replace <PORT> with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
+    > Replace `<PORT>` with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
 
 ---
 ## Choosing Programming Style
