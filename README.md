@@ -15,7 +15,7 @@ Make sure you have to run ESP-IDF on your terminal. Then follow these steps.
 1. **Clone and navigate** to the example folder.
     ```bash
     git clone https://github.com/bokumentation/ESP32-Arduino-as-Components-Starter.git
-    cd ESP32-Arduino-as-Components-Starter/examples/arduino_style
+    cd ESP32-Arduino-as-Components-Starter/examples/esp32_arduino
     ```
 2. **Build, flash, then monitor.**
     ```bash
