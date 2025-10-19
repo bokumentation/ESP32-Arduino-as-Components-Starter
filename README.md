@@ -20,7 +20,10 @@ Make sure you have to run ESP-IDF on your terminal. Then follow these steps.
     ```bash
     cd ESP32-Arduino-as-Components-Starter/examples/esp32_arduino
     ```
-2. **Build, flash, then monitor.**
+2. **Set Target, Build, flash, then monitor.**
+    ```bash
+    idf.py set-target esp32
+    ```
     ```bash
     idf.py build
     ```
@@ -29,12 +32,14 @@ Make sure you have to run ESP-IDF on your terminal. Then follow these steps.
     ```
     >
     > Replace `<PORT>` with your ESP32's actual serial port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux). We can find this in device manager.
+    > You can set another target like `esp32c3`, `esp32s3`, and so on. 
 3. Now your LED should blinking.
 
 ---
-## Setting Up for Different ESP32 Chips
-If you are using a chip other than the standard ESP32, you will need to perform some additional configuration before building.
-1. **Delete** the `idf_component.yml` in the `main` folder.
+## Manual Setting Up for Different ESP32 Chips
+I added the `sdkconfig.defaults` so you dont need these step. But if you curious how i setup the `sdkconfig`, here you go.  
+
+1. **Delete** the `idf_component.yml` in the `main` folder. Lets say, i start from `idf.py create-project`
 2. **Set the target chip** by use `idf.py set-target` to specify your chip type (e.g., `esp32c3`, `esp32s3`).
     ```bash
     idf.py set-target <your_esp_type>
@@ -65,7 +70,7 @@ If you are using a chip other than the standard ESP32, you will need to perform 
 ---
 ## Choosing Programming Style
 
-We can write our code in either the familiar Arduino style or the native ESP-IDF style.
+You can write our code in either the familiar Arduino style or the native ESP-IDF style.
 
 ### Arduino IDE Style
 This style uses the standard `setup()` and `loop()` functions. To enable this, we must enable `Autostart Arduino setup and loop boot` in `idf.py menuconfig` under the `Arduino options` section.
