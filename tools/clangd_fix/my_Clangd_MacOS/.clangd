@@ -6,8 +6,7 @@ CompileFlags:
   
   # Add the toolchain's system include path
   Add:
-    # You might also need the path to the C++ standard library headers
-    # REPLACE THIS PATH with your actual absolute path!
+    # REPLACE THIS "mac" with your actual OS username
 
     - -isystem
     - "/Users/mac/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/xtensa-esp-elf/include"

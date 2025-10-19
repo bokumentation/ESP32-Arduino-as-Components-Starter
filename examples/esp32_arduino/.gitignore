@@ -1,9 +1,12 @@
-.cache/
-.vscode/settings.json
+# Folder
+.cache
+.vscode
+bakcup/
 build/
 managed_components/
-components/
-dependencies.lock
+bakcup/
 
-# MacOS Related
-.DS_Store
+# File
+dependencies.lock
+sdkconfig
+sdkconfig.old
